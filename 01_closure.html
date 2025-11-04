@@ -79,6 +79,31 @@
         console.log(count()); // 1
         setCount(500);
         console.log(count()); // 500
+
+        /**
+         * @param {number} n
+         * @return {Function} counter
+        */
+        // var createCounter = function (n) {
+        //     let num = n;
+        //     return function () {
+        //         // return num++; 先回傳值再++
+        //         // return ++num; 先++再回傳值，所以初始值會是11
+        //     };
+        // };
+
+        var createCounter = function (n) {
+            return function () {
+                return n++;
+            };
+        };
+
+        const counter = createCounter(10)
+
+        console.log(counter()); // 10
+        console.log(counter()); // 11
+        console.log(counter()); // 12
+
     </script>
 </body>
 

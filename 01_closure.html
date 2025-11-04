@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 範例一
+        // 輸入: args = []
+        // 輸出: "Hello World"
+        // 解說:
+        const f = createHelloWorld();
+        f(); // "Hello World"
+
+        function createHelloWorld() {
+            return function () {
+                return "Hello World"
+            };
+        }
+
+        // 範例二
+        // 輸入: args = [{}, null, 42]
+        // 輸出: "Hello World"
+        // 解說:
+        // const f = createHelloWorld();
+        // f({}, null, 42); // "Hello World"
+
+        function init() {
+            var name = "Mozilla"; // name 是個由 init 建立的局部變數
+            function displayName() {
+                // displayName() 是內部函式，一個閉包
+                name += 'a';
+                console.log(name); // 使用了父函式宣告的變數
+            }
+            return displayName;
+        }
+        const init2 = init();
+        init2();
+        init2();
+        init2();
+
+
+        function outer() {
+            let a = 0;
+            function inner() {
+                a += 1;
+                console.log(a);
+            }
+            return inner;
+        }
+
+        const inner = outer();
+
+        inner(); // 1
+        inner(); // 2
+        inner(); // 3
+
+        function useState(initialstat) {
+            let state = initialstat;
+
+            function getState() {
+                return state;
+            }
+
+            function setState(updatedState) {
+                state = updatedState;
+            }
+
+            return [getState, setState];
+        }
+
+        const [count, setCount] = useState(0);
+        console.log(count()); // 0
+        setCount(1);
+        console.log(count()); // 1
+        setCount(500);
+        console.log(count()); // 500
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Global Scope 全域作用域
+        // 當 JavaScript 程式碼被執行一開始時，就會創建一個全域執行環境，被定義在函式或塊級以外的變數，就會屬於全局作用域
+        // 在程式碼中的任何地方都能被使用到
+        var aa = "全局作用域";
+
+        function call() {
+            console.log(aa); // 全局作用域
+            aa = "哈囉全局作用域——";
+        }
+        call();
+        console.log(aa); // 哈囉全局作用域——
+
+
+        // Function Scope 函式作用域
+        // 由函式所創建的作用域
+        function scope() {
+            let a = "函式作用域";
+            console.log(a); // 函式作用域
+        }
+        // a 在此處不可用，因為 a 是函式作用域
+
+
+        // Block Scope 塊級作用域
+        function checkScope(i) {
+            if (i) {
+                let a = "塊級作用域";
+                var b = "函式作用域"; // var會變成函式作用域
+                console.log(a); //塊級作用域
+            } else {
+                // a 變數屬於 if 判斷式中的塊級作用域，在此處不可用
+                // b 變數屬於 check 函式的作用域，在此處可用
+
+                // console.log(a); // not defined
+                console.log(b); // 函式作用域 undefined
+            }
+            console.log(b); // 函式作用域
+            // a 在此處不可用，b 在此處可用
+        }
+        // a,b 在此處不可用
+        // console.log(a); // not defined
+        checkScope(true);
+        // checkScope(false);
+    </script>
+</body>
+
+</html>

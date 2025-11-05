@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let str = '1';
+        let num = 1;
+        console.log(str == num);
+        console.log(typeof (num));
+        console.log(typeof (str));
+
+        // --------------------------------------------
+        console.log('----');
+        console.log('== loose equality 鬆散比較');
+        // == loose equality 鬆散比較
+        // 會強制轉換型別
+        // string 和 number：把字串轉成數字
+        // boolean 和 其他：把 boolean 轉成數字（true→1, false→0）
+        // object（或 array）和 原始值：把物件轉成原始值（通常是字串）
+        // null 和 undefined：特例。這兩個只和彼此相等
+
+        // false 轉成 0
+        console.log(0 == false); // true
+        console.log('0' == false); // true
+
+        // '' 轉成 0
+        console.log('' == 0); // true
+        console.log('' == false); // true
+
+        console.log(null == undefined); // true
+
+        // [] 會先被轉成空字串 ''，然後 '' 又被轉成 0，所以結果是 true。
+        console.log([] == 0); // true
+        console.log([] == false); // true
+        console.log([0] == 0); // true
+
+        // --------------------------------------------
+        console.log('----');
+        console.log('=== strict equality 嚴格比較');
+        // === strict equality 嚴格比較
+        // 不會強制轉換型別與值，所以如果是不同型別，比較兩者會回傳 false。
+        // 兩個例外
+        console.log(+0 === -0); // true
+        console.log(NaN === NaN); // false
+
+        // --------------------------------------------
+        console.log('----');
+        console.log('Object.is ｜ same-value equality 同值比較');
+        // Object.is ｜ same-value equality 同值比較
+        // 比較的可以是任意的兩個值。
+        console.log(Object.is(1, 1)); // true
+        console.log(Object.is(1, "1")); // false
+
+        // 兩種在 === 時遇到的問題，可以透過 Object.is 有效分辨
+        console.log(Object.is(+0, -0)); // false
+        console.log(Object.is(NaN, NaN)); // true
+
+        console.log('----');
+        console.log('Number.isNaN()');
+        // isNaN
+        // 如果要有效分辯NaN可以用這個。
+        console.log(Number.isNaN('123'));
+        console.log(Number.isNaN(NaN));
+    </script>
+</body>
+
+</html>

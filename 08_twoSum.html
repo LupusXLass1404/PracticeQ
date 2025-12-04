@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var twoSum = function (nums, target) {
+            let result;
+            for (let i = 0; i < nums.length; i++) {
+                for (let j = 0 + i + 1; j < nums.length; j++) {
+                    if (nums[i] + nums[j] === target) {
+                        result = [i, j];
+                        break
+                    }
+                }
+                if (result !== undefined) {
+                    break
+                }
+            }
+
+            return result;
+        };
+
+        console.log(twoSum([3, 3], 6));
+    </script>
+</body>
+
+</html>

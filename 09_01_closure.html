@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function a() {
+            let num = 0;
+            console.log("fn " + num);
+            return function (add) {
+                num += add;
+                return num;
+                // ====
+                // return num += add;
+                // ====
+                // return num + add; // 錯誤範例。只是計算，並沒有改變num的值
+            }
+        }
+
+        let add = a(); // 執行 a() 本身的代碼，並retuen fn 儲存到add中，所以add儲存只有fn
+        console.log(add(1));
+        console.log(add(1));
+        console.log(add(8));
+
+        let add2 = a(); // 每次呼叫 fn 都會建立「新的環境」，產生自己的 num，初始值 0
+        console.log(add2(3));
+        console.log(add2(7));
+        console.log(add2(2));
+    </script>
+</body>
+
+</html>

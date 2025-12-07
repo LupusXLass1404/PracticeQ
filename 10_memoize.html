@@ -29,7 +29,8 @@
             let memoized = [];
             return function (...args) {
                 const key = JSON.stringify([...args]);
-                if (memoized[key]) {
+
+                if (key in memoized) {
                     return memoized[key];
                 }
 
@@ -44,8 +45,8 @@
             callCount += 1;
             return a + b;
         })
-        console.log(memoizedFn(2, 3)) // 5
-        console.log(memoizedFn(2, 3)) // 5
+        console.log(memoizedFn(0, 0)) // 5
+        console.log(memoizedFn(0, 0)) // 5
         console.log(callCount) // 1
     </script>
 </body>

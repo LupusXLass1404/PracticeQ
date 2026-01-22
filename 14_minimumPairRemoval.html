@@ -9,13 +9,14 @@
 
 <body>
     <script>
+        // 用 @@ 標記解完題，看完詳解的筆紀
         var minimumPairRemoval = function (nums) {
             let time = 0; // 防無限迴圈，因為我不太會用while
             let result = 0;
 
-            while (true) {
-                let minIndex = 0;
-                let minimum = 0; // 存最小的數值
+            while (true) { // @@ nums.length > 1，最好還是要設條件，免得死亡迴圈
+                let minIndex = 0; // @@ 最好設成 -1，明確表示「尚未找到」或「無效 index」，不會與陣列合法索引混淆
+                let minimum = 0; // 存最小的數值 // @@ 可以設定Infinity
                 let nonDec = true;
 
 
@@ -25,7 +26,7 @@
                         nonDec = false;
                     }
                     if (i === 0) {
-                        // 解完題後看詳解發現可以設定Infinity這個數，就不用這個判斷式了
+                        // @@ 可以設定Infinity這個數，就不用這個判斷式了
                         // 把值設為 無限大。通常用在「找最小值」的情況。是為了保證第一次比較時，任何數字都比 Infinity 小。
                         minimum = tmp;
                     }

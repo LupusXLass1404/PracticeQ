@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var minimumPairRemoval = function (nums) {
+            let time = 0; // 防無限迴圈，因為我不太會用while
+            let result = 0;
+
+            while (true) {
+                let minIndex = 0;
+                let minimum = 0; // 存最小的數值
+                let nonDec = true;
+
+
+                for (let i = 0; i < nums.length - 1; i++) { // 最後一個數字沒有和可以算，所以長度-1
+                    let tmp = nums[i] + nums[i + 1];
+                    if (nums[i] > nums[i + 1]) {
+                        nonDec = false;
+                    }
+                    if (i === 0) {
+                        // 解完題後看詳解發現可以設定Infinity這個數，就不用這個判斷式了
+                        // 把值設為 無限大。通常用在「找最小值」的情況。是為了保證第一次比較時，任何數字都比 Infinity 小。
+                        minimum = tmp;
+                    }
+                    console.log(`tmp: ${nums[i]} + ${nums[i + 1]} = ${tmp}`);
+                    if (tmp < minimum) {
+                        minimum = tmp;
+
+                        minIndex = i;
+                    }
+                }
+                console.log('minimum: ' + minimum);
+                console.log('minIndex: ' + minIndex);
+                if (nonDec || time > 20) {
+                    break;
+                }
+
+
+                console.log('arr: ' + nums);
+                nums.splice(minIndex, 2, nums[minIndex] + nums[minIndex + 1]);
+                console.log('arr: ' + nums);
+                result++;
+
+                time++
+            }
+            // console.log('arr: ' + nums);
+            // console.log('result: ' + result);
+            return result;
+        };
+
+
+        const res = minimumPairRemoval([2, 2, -1, 3, -2, 2, 1, 1, 1, 0, -1]);
+        console.log(res);
+
+        // console.log(minimumPairRemoval())
+        // console.log(minimumPairRemoval([5, 2, 3, 1]));
+        // console.log(minimumPairRemoval([1, 2, 2]));
+    </script>
+</body>
+
+</html>

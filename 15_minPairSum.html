@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var minPairSum = function (nums) {
+            let result = 0;
+
+            let maxArr = [];
+
+            // 重新排列陣列
+            nums.sort((a, b) => a - b)
+
+            // while (nums.length > 0) {
+
+            // }
+            // for (let i = 0; i < nums.length; i++) {
+            //     console.log(`${nums[i]} >= ${newArr[newArr.length - 1]} is ${nums[i] >= newArr[newArr.length - 1]}`);
+            //     console.log(`${nums[i]} >= ${newArr[0]} is ${nums[i] <= newArr[0]}`);
+
+            //     if (nums[i] >= newArr[newArr.length - 1]) {
+            //         newArr.push(nums[i]);
+            //         continue;
+            //     } else {}
+            //     if (nums[i] <= newArr[0]) {
+            //         newArr.unshift(nums[i])
+            //     };
+            //     // console.log(newArr[0]);
+            //     // console.log(nums[i]);
+            //     console.log(newArr);
+            // }
+            // console.log(nums);
+
+
+
+
+            // while (nums.length > 0) {
+            //     let min = Infinity;
+            //     let minIndex = -1;
+            //     for (let i = 0; i < nums.length; i++) {
+            //         const num = nums[i];
+            //         if (num < min) {
+            //             min = num;
+            //             minIndex = i;
+            //         }
+            //     }
+            //     newArr.push(min);
+            //     nums.splice(minIndex, 1);
+            // }
+
+
+            while (nums.length > 0) {
+                let first = nums.shift();
+                let last = nums.pop();
+                const sum = first + last
+                console.log(`${first} + ${last} = ${sum}`)
+                maxArr.push(sum);
+
+                if (result < sum) {
+                    result = sum;
+                }
+            }
+            console.log(maxArr);
+
+            // while (nums.length > 1) {
+            //     let min = Infinity;
+            //     let max = -Infinity;
+            //     let minIndex = -1;
+            //     let maxIndex = -1;
+
+            //     for (let i = 0; i < nums.length; i++) {
+            //         let isChoose = false;
+            //         const num = nums[i];
+
+            //         if (num < min) {
+            //             minIndex = i;
+            //             min = num;
+            //         }
+            //         // if (num > max && !isChoose) {
+            //         //     maxIndex = i;
+            //         //     max = num;
+            //         // }
+            //     }
+            //     console.log(`nums: ${nums}`);
+            //     // console.log(`index: ${minIndex}, ${maxIndex}`);
+
+            //     if (result < min + max) {
+            //         result = min + max;
+            //     }
+
+            //     maxArr.push(min + max);
+
+            //     if (minIndex > maxIndex) {
+            //         nums.splice(minIndex, 1);
+            //         nums.splice(maxIndex, 1);
+            //     } else {
+            //         nums.splice(maxIndex, 1);
+            //         nums.splice(minIndex, 1);
+            //     }
+            // }
+            // console.log(`maxArr: ${maxArr}`);
+            return result;
+        };
+
+        console.log(minPairSum([9, 2, 10, 1, 10, 4, 8, 9, 7, 6, 8, 10, 8, 6, 5, 4, 3, 4, 2, 10]));
+    </script>
+</body>
+
+</html>

@@ -8,7 +8,9 @@
 </head>
 
 <body>
+
     <script>
+        // 用 @@ 標記解完題，看完詳解的筆紀
         var minPairSum = function (nums) {
             let result = 0;
 
@@ -37,9 +39,6 @@
             // }
             // console.log(nums);
 
-
-
-
             // while (nums.length > 0) {
             //     let min = Infinity;
             //     let minIndex = -1;
@@ -55,16 +54,17 @@
             // }
 
 
-            while (nums.length > 0) {
-                let first = nums.shift();
-                let last = nums.pop();
-                const sum = first + last
+            while (nums.length > 0) { // @@ (let i = 0; i < Math.ceil(nums.length / 2); i++)
+                let first = nums.shift(); // @@ nums[i]
+                let last = nums.pop(); // @@ nums[nums.length - 1 - i];
+                const sum = first + last;
                 console.log(`${first} + ${last} = ${sum}`)
                 maxArr.push(sum);
 
                 if (result < sum) {
                     result = sum;
                 }
+                // @@ 或直接珊掉全部用 Math.max()
             }
             console.log(maxArr);
 

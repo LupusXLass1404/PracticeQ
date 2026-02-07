@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 用 @@ 標記解完題，看完詳解的筆紀
+        var constructTransformedArray = function (nums) {
+            let result = [];
+            for (let i = 0; i < nums.length; i++) {
+                let tmp = 0;
+                const num = nums[i];
+                // 不管正負數，總共要走幾步，先算出來
+                const steps = Math.abs(nums[i]) % nums.length; // @@其實不用加絕對值
+                // 確認好步數之後要做什麼？
+                // => 開始走路。
+
+                // 我的起點在哪？起點是i
+                // 正數向右走
+                // 我會遇到什麼狀況？
+                // if i + 步數 不超過 length - 1，可以直接得到答案
+                // else 超過， 就需要 %length
+                // 所以都可以一起 %length
+                // (i + 步數) % length
+
+                // 負數向左走
+                // if i - 步數，不超過， 可以直接得到答案
+                // else 超過， 會變成負數，所以要 +length
+                // 要通用的話，就算if不超過，+length也沒有影響，之後在%length
+                // ((i - 步數) + length) % length
+
+                if (num >= 0) tmp = (i + steps);
+                else if (num < 0) tmp = (i - steps) + nums.length; // @@因為上面加了絕對值，這裡就+-就變成+了
+                // @@ 正如上面所說，因為+了length，也沒差，所以其實兩個可以一起加，可以縮短代碼
+
+                const index = tmp % nums.length;
+
+                // console.log(index);
+                result.push(nums[index]);
+            }
+
+            return result;
+        };
+    </script>
+</body>
+
+</html>

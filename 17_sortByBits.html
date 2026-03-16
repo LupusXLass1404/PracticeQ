@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sortByBits = function (arr) {
+            let sort = [];
+            for (let i = 0; i < arr.length; i++) {
+                let tmp = [];
+                let num = arr[i];
+                let count = 0;
+                console.log("========== " + num);
+
+                while (num > 0) {
+                    tmp.push(num % 2);
+                    if (num % 2 === 1) {
+                        count++;
+                    }
+                    num = Math.floor(num / 2);
+                }
+
+                if (tmp.length === 0) {
+                    tmp.push(num);
+                }
+
+                sort.push(count);
+            }
+
+            let paired = arr.map((v, i) => ({ num: v, sort: sort[i] }));
+
+            paired.sort((a, b) => {
+                if (a.sort === b.sort) {
+                    return a.num - b.num;
+                }
+                return a.sort - b.sort;
+            });
+
+            let sortedNum = paired.map(o => o.num);
+
+            return sortedNum;
+        };
+        console.log("=== result ===");
+        console.log(sortByBits([1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1]));
+    </script>
+</body>
+
+</html>

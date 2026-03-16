@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function reverseVowels(str) {
+
+            const vowels = 'aeiouAEIOU'; // 字串可以直接當陣列用，也可以被includes使用
+            let arr = str.split(''); // str不能替換，所以要轉變成陣列
+
+            let left = 0;
+            let right = arr.length - 1; // 從最右開始，也就是 n - 1
+
+            while (left < right) { // 只要左右沒相遇，left就會比right，loop就會繼續
+
+                while (left < right && !vowels.includes(arr[left])) { // 如果沒遇到母音，loop就不會結束，left就會一直增加。如果遇到母音，loop結束，left就會停在原地
+                    left++;
+                }
+
+                while (left < right && !vowels.includes(arr[right])) { // 同上，right會一直減少直到遇到母音。如果一開始就是母音，那loop就不會被觸發
+                    right--;
+                }
+
+                // 傳統方法
+                // let temp = arr[left];
+                // arr[left] = arr[right];
+                // arr[right] = temp;
+
+                // 解構賦值
+                // arr[left]會變成 arr[right]
+                // arr[right]會變成 arr[left]
+                [arr[left], arr[right]] = [arr[right], arr[left]];
+
+                // 讓數字繼續運行。因為交換後原地還是母音，要讓左右往前移動，所以 +- 數字。
+                left++;
+                right--;
+            }
+
+            // 把陣列組合成字或句子
+            return arr.join('');
+        }
+
+        console.log(reverseVowels('algorithm'))
+    </script>
+</body>
+
+</html>

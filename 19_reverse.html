@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 如果是1234
+        // 0 * 10 = 0
+        // 1234 % 10 是取了個位數 = 4
+        // 所以結果 = 4
+        // x / 10 四捨五入，得 123
+
+        // *** %10可以取個位數耶 ***
+
+        // 第二圈
+        // 目前result是4
+        //  4*10 = 40
+        // 取個位加上去，43
+        // 重複後續操作
+
+        function reverse(x) {
+            let result = 0;
+
+            while (x > 0) {
+                result = result * 10 + x % 10
+                x = Math.floor(x / 10)
+            }
+
+            return result;
+        }
+
+        console.log(reverse(1234));
+    </script>
+</body>
+
+</html>

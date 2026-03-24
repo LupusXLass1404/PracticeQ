@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  Definition for singly - linked list.
+        function ListNode(val, next) {
+            this.val = (val === undefined ? 0 : val)
+            this.next = (next === undefined ? null : next)
+        }
+        let a = ListNode(1);
+        let b = ListNode(2);
+
+        // ListNode不是陣列
+        // 但好像也不能用new使用
+        // val一定要是整數
+        // new ListNode()，一但使用輸入第二個參數，也就是next，就會報錯，無法讀取未定義屬性。
+        // next 不知道要輸入什麼屬性才可以通過，但輸入undefined是可以的
+        // 用new ListNode(1)輸出的東西確實會變成[1]
+        // 自己用new ListNode()的東西可以用val來呼叫數值
+
+        // 但list1沒辦法用val
+        // console.log(list1) // [1,2,4]
+        // typeof(list1) // object
+        // list1 instanceof Array // false
+        // list1 instanceof Object // true
+        // list1[0], list1.val, list1.next都是無效的
+        // Object.keys(list1) // TypeError: Cannot convert undefined or null to object
+        // Object.values(list1) // TypeError: Cannot convert undefined or null to object
+
+        // list1 在某些時刻是 null 或 undefined
+        // list1 === null // false
+        // console.log(list1.val); // TypeError: Cannot convert undefined or null to object
+        // console.log(list1?.val); // 1
+        // console.log(JSON.stringify(list1)); // {"val":1,"next":{"val":2,"next":{"val":4,"next":null}}}
+        // console.log(list1.next.val) // TypeError: Cannot read properties of null (reading 'next')
+
+        // let current = list1;
+        // console.log(current.val); // Cannot read properties of null (reading 'val')
+        // 「在這一行執行的瞬間，list1 根本就是 null。」
+
+        // ## 1. 推理：變數的「生命週期」
+        // 在 LeetCode 或類似的環境中，list1 通常是作為一個函數的參數傳進來的。
+        // 如果你在這裡 console.log(list1?.val)，你會看到 1
+        // 但如果你在「某個地方」弄丟了它，它就會變成 null
+        // 如果你的程式碼跑了一個迴圈，把 list1 一直往後推，推到最後它就會變成 null（鏈結串列的終點）。這時候你再回頭去呼叫 list1.val，它就會報錯。
+
+        // ?. 不是「讓錯誤消失」
+        // 它只是「避免你在 null 上取值」
+        // list1 並不是穩定存在的
+        // list1.val：強迫讀取。如果 list1 是 null，程式直接崩潰。
+        // list1?.val：禮貌詢問。如果 list1 是 null，它就回傳 undefined 而不崩潰。
+        // 這證實了你的 list1 在執行那一行時，處於一種「不穩定」的狀態。
+
+        // if (list1 === null) {
+        //     console.log("發現野生 null！這是空鏈結。");
+        // } else {
+        //     console.log("這是一個有內容的物件，它的值是：", list1.val); // 它的值是：1
+        // }
+
+        // 對呢我怎麼沒想過如果不是null就可以用這種方法來看值
+
+        /**
+         * @param {ListNode} list1
+         * @param {ListNode} list2
+         * @return {ListNode}
+         */
+        var mergeTwoLists = function (list1, list2) {
+
+        };
+        mergeTwoLists(a, b);
+
+        // 好好奇list1到底是怎麼傳入的
+    </script>
+</body>
+
+</html>

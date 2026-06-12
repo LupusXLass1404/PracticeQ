@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        // 初始化資料
+        function initItems() {
+            const items = [
+                new Item({
+                    id: "apple",
+                    name: "蘋果"
+                }),
+                new Item({
+                    id: "banana",
+                    name: "香焦",
+                }),
+                new Item({
+                    id: "watermelon",
+                }),
+                new Item({
+                    name: "芒果",
+                }),
+                new Item({
+                    id: "cat",
+                    name: "貓",
+                    hasGenitals: true,
+                })
+            ]
+            V.items = items;
+            console.log(items)
+        }
+
+        let V = {};
+        // class主體
+        class Item {
+            id;
+            name;
+            hasEyes;
+
+            constructor(props) {
+                /* parses passed object and populates class properties */
+                Object.keys(props).forEach(prop => {
+                    this[prop] = props[prop];
+                });
+
+                // 清除不要的屬性
+                Object.keys(this).forEach(key => {
+                    if (this[key] === undefined) delete this[key];
+                });
+
+                // 預設值
+                if (!this.name) this.name = "未輸入名稱"
+                if (!this.id) this.id = "未輸入id"
+                if (!this.hasEyes) this.hasEyes = false
+            }
+        }
+
+        // 把資料輸入到畫面上
+        function createApp() {
+            const app = document.getElementById('app');
+            let tmp = '';
+            V.items.forEach(e => {
+                tmp += `<p>${e.name}(id: ${e.id})，${e.hasGenitals ? "有" : "沒有"}眼睛</p>`
+                console.log(tmp)
+            })
+            app.innerHTML = tmp;
+        }
+
+        initItems()
+        createApp()
+    </script>
+
+</body>
+
+</html>
